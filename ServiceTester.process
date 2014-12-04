@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:ns1="http://xmlns.telco.com/OMP/MultiChannelRequestReply.xsd" xmlns:tib="http://www.tibco.com/bw/xslt/custom-functions" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns="http://www.celfocus.com/schemas/DU_OMP_Adapter/Resources/Schemas/OMP/FRRequestReply.xsd" xmlns:ns3="http://xmlns.du.ae/EAI/HEADER" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ns2="http://xmlns.du.ae/EAI/REQUEST_EAI" xmlns:pd="http://xmlns.tibco.com/bw/process/2003">
+    <xsd:import namespace="http://www.celfocus.com/schemas/DU_OMP_Adapter/Resources/Schemas/OMP/FRRequestReply.xsd" schemaLocation="/GlobalCommonResources/SchemaDefinitions/OMP/FRRequestReply.xsd"/>
+    <xsd:import namespace="http://xmlns.telco.com/OMP/MultiChannelRequestReply.xsd" schemaLocation="/GlobalCommonResources/SchemaDefinitions/OMP/MultiChannelRequestReply.xsd"/>
+    <pd:name>Test/BusinessServiceTester/Interface/ServiceTester.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startType>
+        <xsd:element name="Input">
+            <xsd:complexType>
+                <xsd:sequence>
+                    <xsd:element name="frID" type="xsd:string"/>
+                    <xsd:element name="inHistory" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="frResponseServices" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:element>
+    </pd:startType>
+    <pd:startX>26</pd:startX>
+    <pd:startY>71</pd:startY>
+    <pd:returnBindings/>
+    <pd:endName>EndPrepaidQueryWallet_v2</pd:endName>
+    <pd:endX>740</pd:endX>
+    <pd:endY>72</pd:endY>
+    <pd:errorSchemas/>
+    <pd:processVariables/>
+    <pd:targetNamespace>http://xmlns.example.com/1386062491135</pd:targetNamespace>
+    <pd:activity name="GetFRContext">
+        <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
+        <pd:resourceType>ae.process.subprocess</pd:resourceType>
+        <pd:x>125</pd:x>
+        <pd:y>70</pd:y>
+        <config>
+            <processName>/Test/BusinessServiceTester/Common/GetFRContext.process</processName>
+        </config>
+        <pd:inputBindings>
+            <Input>
+                <frId>
+                    <xsl:value-of select="$Start/Input/frID"/>
+                </frId>
+                <xsl:if test="$Start/Input/inHistory">
+                    <inHistory>
+                        <xsl:value-of select="$Start/Input/inHistory"/>
+                    </inHistory>
+                </xsl:if>
+            </Input>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="Call FR Request">
+        <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
+        <pd:resourceType>ae.process.subprocess</pd:resourceType>
+        <pd:x>471</pd:x>
+        <pd:y>72</pd:y>
+        <config>
+            <processName>/Processes/OMP/BusinessResources/Processes/Starters/DefaultBusinessInterface.process</processName>
+            <processNameXPath>concat('/Processes/OMP/Business/FR/',
+tib:tokenize($GetFRContext/Output/serviceEndpoint,".")[5],'/',
+tib:tokenize($GetFRContext/Output/serviceEndpoint,".")[6],'/',
+$GetFRContext/Output/serviceName,'/',
+$GetFRContext/Output/serviceName,
+'.process')</processNameXPath>
+        </config>
+        <pd:inputBindings>
+            <xsl:for-each select="$Prepare-FR-Request/ns:FR_BUSINESS_REQUEST">
+                <ns:FR_BUSINESS_REQUEST>
+                    <ns:FR_ID>
+                        <xsl:value-of select="ns:FR_ID"/>
+                    </ns:FR_ID>
+                    <ns:ORDER_PUBLIC_ID>
+                        <xsl:value-of select="ns:ORDER_PUBLIC_ID"/>
+                    </ns:ORDER_PUBLIC_ID>
+                    <xsl:copy-of select="ns:Order"/>
+                    <xsl:copy-of select="ns:OMPOrder"/>
+                    <ns:CORRELATION_ID>
+                        <xsl:value-of select="ns:CORRELATION_ID"/>
+                    </ns:CORRELATION_ID>
+                    <ns:CLIENT_SYSTEM>
+                        <xsl:value-of select="ns:CLIENT_SYSTEM"/>
+                    </ns:CLIENT_SYSTEM>
+                    <ns:FR_STATUS>
+                        <xsl:value-of select="ns:FR_STATUS"/>
+                    </ns:FR_STATUS>
+                    <ns:EXECUTION_MODE>
+                        <xsl:value-of select="ns:EXECUTION_MODE"/>
+                    </ns:EXECUTION_MODE>
+                    <xsl:copy-of select="ns:RESPONSE_MESSAGE"/>
+                </ns:FR_BUSINESS_REQUEST>
+            </xsl:for-each>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="Prepare FR Request">
+        <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
+        <pd:resourceType>ae.process.subprocess</pd:resourceType>
+        <pd:x>313</pd:x>
+        <pd:y>72</pd:y>
+        <config>
+            <processName>/Test/BusinessServiceTester/Common/PrepareFRRequest.process</processName>
+        </config>
+        <pd:inputBindings>
+            <Input>
+                <orderPublicId>
+                    <xsl:value-of select="$GetFRContext/Output/orderPublicID"/>
+                </orderPublicId>
+                <frID>
+                    <xsl:value-of select="$Start/Input/frID"/>
+                </frID>
+                <xml>
+                    <xsl:value-of select="$GetFRContext/Output/xml"/>
+                </xml>
+            </Input>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="Call FR Responses">
+        <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
+        <pd:resourceType>ae.process.subprocess</pd:resourceType>
+        <pd:x>601</pd:x>
+        <pd:y>72</pd:y>
+        <config>
+            <processName>/Test/BusinessServiceTester/Common/CallFRResponses.process</processName>
+        </config>
+        <pd:inputBindings>
+            <Input>
+                <xsl:copy-of select="$Prepare-FR-Request/ns:FR_BUSINESS_REQUEST"/>
+                <xsl:for-each select="$Start/Input/frResponseServices">
+                    <frResponseServices>
+                        <xsl:value-of select="."/>
+                    </frResponseServices>
+                </xsl:for-each>
+                <serviceName>
+                    <xsl:value-of select="$GetFRContext/Output/serviceName"/>
+                </serviceName>
+            </Input>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>GetFRContext</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>GetFRContext</pd:from>
+        <pd:to>Prepare FR Request</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Call FR Request</pd:from>
+        <pd:to>Call FR Responses</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Prepare FR Request</pd:from>
+        <pd:to>Call FR Request</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Call FR Responses</pd:from>
+        <pd:to>EndPrepaidQueryWallet_v2</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:label>
+        <pd:name>Label</pd:name>
+        <pd:description>-------------------------------------------------------------------------------------------------------------------------------
+-- Input Description 
+-------------------------------------------------------------------------------------------------------------------------------
+frID » ID of the FR to test
+frResponseServices » The response services to call after the FR invocation. It can be a list.
+In order to simulate the responses to test a process with the same name must be available at :
+      Test\BusinessServiceTester\Operation\Services\&lt;ServiceName&gt;\&lt;frResponseService&gt;
+-------------------------------------------------------------------------------------------------------------------------------
+-- Example
+-------------------------------------------------------------------------------------------------------------------------------
+frID » 100 (it's the PreActivateNetwork_v1)
+frResponseServices » ProgressUpdateNetworkResponse_Test1
+
+</pd:description>
+        <pd:x>374</pd:x>
+        <pd:y>207</pd:y>
+        <pd:width>731</pd:width>
+        <pd:height>205</pd:height>
+        <pd:fontName>Verdana-plain-12</pd:fontName>
+        <pd:fontColor>-16777216</pd:fontColor>
+        <pd:color>-3342388</pd:color>
+        <pd:type>dash</pd:type>
+        <pd:thickness>1</pd:thickness>
+        <pd:fade>false</pd:fade>
+    </pd:label>
+</pd:ProcessDefinition>
