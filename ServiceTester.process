@@ -28,7 +28,7 @@
         <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
         <pd:resourceType>ae.process.subprocess</pd:resourceType>
         <pd:x>125</pd:x>
-        <pd:y>70</pd:y>
+        <pd:y>75</pd:y>
         <config>
             <processName>/Test/BusinessServiceTester/Common/GetFRContext.process</processName>
         </config>
