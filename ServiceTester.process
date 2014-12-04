@@ -34,9 +34,6 @@
         </config>
         <pd:inputBindings>
             <Input>
-                <frId>
-                    <xsl:value-of select="$Start/Input/frID"/>
-                </frId>
                 <xsl:if test="$Start/Input/inHistory">
                     <inHistory>
                         <xsl:value-of select="$Start/Input/inHistory"/>
