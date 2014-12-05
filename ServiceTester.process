@@ -90,7 +90,7 @@ $GetFRContext/Output/serviceName,
         <pd:x>313</pd:x>
         <pd:y>72</pd:y>
         <config>
-            <processName>/Test/BusinessServiceTester/Common/PrepareFRRequest.process</processName>
+            <processName>/Test/BusinessServiceTester/Common/PrepareFRRequest_v2.process</processName>
         </config>
         <pd:inputBindings>
             <Input>
