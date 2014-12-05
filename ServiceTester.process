@@ -18,7 +18,11 @@
     <pd:startX>26</pd:startX>
     <pd:startY>71</pd:startY>
     <pd:returnBindings/>
+<<<<<<< HEAD
     <pd:endName>EndPrepaidQueryWallet_v3001</pd:endName>
+=======
+    <pd:endName>EndPrepaidQueryWallet_v3</pd:endName>
+>>>>>>> ec47cf3adbcd5a963ff766dd5e73988888fd5149
     <pd:endX>740</pd:endX>
     <pd:endY>72</pd:endY>
     <pd:errorSchemas/>
