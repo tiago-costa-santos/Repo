@@ -109,8 +109,8 @@ $GetFRContext/Output/serviceName,
     <pd:activity name="Call FR Responses">
         <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
         <pd:resourceType>ae.process.subprocess</pd:resourceType>
-        <pd:x>601</pd:x>
-        <pd:y>72</pd:y>
+        <pd:x>1000</pd:x>
+        <pd:y>1000</pd:y>
         <config>
             <processName>/Test/BusinessServiceTester/Common/CallFRResponses.process</processName>
         </config>
