@@ -23,7 +23,7 @@ sdfsadf<?xml version="1.0" encoding="UTF-8"?>
     <pd:endY>72</pd:endY>
     <pd:errorSchemas/>
     <pd:processVariables/>
-    <pd:targetNamespace>http://xmlns.example.com/1386062491135</pd:targetNamespace>
+    <pd:targetNamespace></pd:targetNamespace>
     <pd:activity name="GetFRContext">
         <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
         <pd:resourceType>ae.process.subprocess</pd:resourceType>
