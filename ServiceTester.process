@@ -18,7 +18,7 @@ sdfsadf<?xml version="1.0" encoding="UTF-8"?>
     <pd:startX>26</pd:startX>
     <pd:startY>71</pd:startY>
     <pd:returnBindings/>
-    <pd:endName>EndPrepaidQueryWallet_v3</pd:endName>
+    <pd:endName>EndPrepaidQueryWallet_v4</pd:endName>
     <pd:endX>740</pd:endX>
     <pd:endY>72</pd:endY>
     <pd:errorSchemas/>
