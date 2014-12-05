@@ -18,7 +18,7 @@
     <pd:startX>26</pd:startX>
     <pd:startY>71</pd:startY>
     <pd:returnBindings/>
-    <pd:endName>EndPrepaidQueryWallet_v3000</pd:endName>
+    <pd:endName>EndPrepaidQueryWallet_v3001</pd:endName>
     <pd:endX>740</pd:endX>
     <pd:endY>72</pd:endY>
     <pd:errorSchemas/>
@@ -90,7 +90,7 @@ $GetFRContext/Output/serviceName,
         <pd:x>313</pd:x>
         <pd:y>72</pd:y>
         <config>
-            <processName>/Test/BusinessServiceTester/Common/PrepareFRRequest.process</processName>
+            <processName>/Test/BusinessServiceTester/Common/PrepareFRRequest_v2.process</processName>
         </config>
         <pd:inputBindings>
             <Input>
