@@ -182,7 +182,7 @@ frResponseServices » ProgressUpdateNetworkResponse_Test1
         <pd:x>374</pd:x>
         <pd:y>2000</pd:y>
         <pd:width>731</pd:width>
-        <pd:height>205</pd:height>
+        <pd:height>300</pd:height>
         <pd:fontName>Verdana-plain-12</pd:fontName>
         <pd:fontColor>-16777216</pd:fontColor>
         <pd:color>-3342388</pd:color>
