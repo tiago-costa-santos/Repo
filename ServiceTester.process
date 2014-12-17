@@ -15,7 +15,7 @@ sdfsadf<?xml version="1.0" encoding="UTF-8"?>
             </xsd:complexType>
         </xsd:element>
     </pd:startType>
-    <pd:startX>26</pd:startX>
+    <pd:startX>10000</pd:startX>
     <pd:startY>71</pd:startY>
     <pd:returnBindings/>
     <pd:endName>EndPrepaidQueryWallet_v4</pd:endName>
@@ -24,7 +24,7 @@ sdfsadf<?xml version="1.0" encoding="UTF-8"?>
     <pd:errorSchemas/>
     <pd:processVariables/>
     <pd:targetNamespace></pd:targetNamespace>
-    <pd:activity name="GetFRContext">
+    <pd:activity name="GetFRContext_v2">
         <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
         <pd:resourceType>ae.process.subprocess</pd:resourceType>
         <pd:x>125</pd:x>
