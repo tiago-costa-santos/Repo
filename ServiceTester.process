@@ -42,7 +42,7 @@ sdfsadf<?xml version="1.0" encoding="UTF-8"?>
             </Input>
         </pd:inputBindings>
     </pd:activity>
-    <pd:activity name="Call FR Request">
+    <pd:activity name="Call FR Request TEST">
         <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
         <pd:resourceType>ae.process.subprocess</pd:resourceType>
         <pd:x>471</pd:x>
