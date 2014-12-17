@@ -15,7 +15,7 @@ sdfsadf<?xml version="1.0" encoding="UTF-8"?>
             </xsd:complexType>
         </xsd:element>
     </pd:startType>
-    <pd:startX>10000</pd:startX>
+    <pd:startX>10</pd:startX>
     <pd:startY>71</pd:startY>
     <pd:returnBindings/>
     <pd:endName>EndPrepaidQueryWallet_v100/pd:endName>
