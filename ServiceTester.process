@@ -139,7 +139,7 @@ $GetFRContext/Output/serviceName,
         <pd:from>GetFRContext</pd:from>
         <pd:to>Prepare FR Request</pd:to>
         <pd:lineType>Default</pd:lineType>
-        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:lineColor>-16777215</pd:lineColor>
         <pd:conditionType>always</pd:conditionType>
     </pd:transition>
     <pd:transition>
